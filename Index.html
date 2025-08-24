@@ -5,11 +5,39 @@
 </section
 <section id="products">
   <h2>Our Products</h2>
-  <ul>
-    <li>🍯 Pure Honey — FDA approved</li>
-    <li>🥜 Groundnut Paste — Smooth & Natural</li>
-    <li>🌶 Pepper Mix — Organic spice blends</li>
-  </ul>
+<div class="product">
+  <h3>🍯 Pure Honey (250ml)</h3>
+  <p>FDA approved, harvested in Nsawam-Dobro</p>
+  <p class="price">GHS 40.00</p>
+  <button onclick="payWithPaystack('Pure Honey', 3500)">Pay Now</button>
+</div>
+section id="products">
+  <h2>Our Products</h2>
+<div class="product">
+  <h3>🍯 Pure Honey (500ml)</h3>
+  <p>FDA approved, harvested in Nsawam-Dobro</p>
+  <p class="price">GHS 7o.00</p>
+  <button onclick="payWithPaystack('Pure Honey', 3500)">Pay Now</button>
+</div>
+section id="products">
+  <h2>Our Products</h2>
+<div class="product">
+  <h3>🍯 Pure Honey (2liters)</h3>
+  <p>FDA approved, harvested in Nsawam-Dobro</p>
+  <p class="price">GHS 250.00</p>
+  <button onclick="payWithPaystack('Pure Honey', 3500)">Pay Now</button>
+</div>
+<div class="product">
+  <h3>🥜 Groundnut Paste (700g)</h3>
+  <p>Smooth, natural, and rich in flavor</p>
+  <p class="price">GHS 30.00</p>
+  <button onclick="payWithPaystack('Groundnut Paste', 2800)">Pay Now</button>
+</div>
+<div class="product">
+  <h3>🌿 DawaDwa (200g)</h3>
+  <p>Healthy, organic preservative — locally sourced</p>
+  <p class="price">GHS 15.00</p>
+</div>  
 </section>
 <section id="about">
   <h2>About NyamJee Foods</h2>
@@ -18,16 +46,36 @@
 <section id="location">
   <h2>Find Us</h2>
   <iframe
-    src="https://www.google.com/maps?q=Achimota+Road,+Accra,+Ghana&output=embed"
+    src="https://www.google.com/maps?q=Nsawam-Dobro+Road,+Accra,+Ghana&output=embed"
     width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
   </iframe>
 </section>
 <section id="contact">
   <h2>Contact Us</h2>
   <p>📞 Call or WhatsApp: 0532947946 / 0532953176</p>
-  <p>📍 Location: Achimota Road, Accra</p>
+  <p>📍 Location: Nswam-Dobro Road, Accra</p>
   <p>📦 Nationwide Delivery Available</p>
 </section>
 <footer>
   <p>&copy; 2025 NyamJee Foods. All rights reserved.</p>
 </footer>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  function payWithPaystack(productName, amount) {
+    var handler = PaystackPop.setup({
+      key: pk_test_36b8a1a6b864b64881e49c0264c88077672cdb7d
+      email: 'geraldscott20@icloud.com', //
+      amount: amount * 100, // Convert GHS to pesewas
+      currency: 'GHS',
+      ref: 'NYAMJEE-' + Math.floor((Math.random() * 1000000000) + 1),
+      label: productName,
+      callback: function(response) {
+        alert('Payment successful! Ref: ' + response.reference);
+      },
+      onClose: function() {
+        alert('Payment cancelled');
+      }
+    });
+    handler.openIframe();
+  }
+</script>
